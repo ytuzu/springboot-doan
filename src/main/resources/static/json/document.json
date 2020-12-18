@@ -1,0 +1,28 @@
+{
+	"Singin": {
+		"Description": "Đăng nhập",
+		"Path": "/api/v1/auth/singin",
+		"Method": "POST",
+		"Body Example": {
+			"username": "admin",
+			"password": "admin"
+		},
+		"Noted": "nothing"
+	},
+	"Signup": {
+		"Description": "Đăng ký",
+		"Path": "/api/v1/auth/signup",
+		"Method": "POST",
+		"Body Example": {
+			"username": "admin",
+			"email": "nguyenhnhatquang@gmail.com",
+			"password": "admin",
+			"roles": [
+				"ROLE_ADMIN",
+				"ROLE_MODERATOR",
+				"ROLE_USER"
+			]
+		},
+		"Noted" : "roles có thể chọn nhiều mục nhưng nhất định phải nằm trong 3 ROLE ở trên, nếu không để gì thì sẽ set ROLE_USER "
+	}
+}
