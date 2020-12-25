@@ -24,5 +24,39 @@
 			]
 		},
 		"Noted" : "roles có thể chọn nhiều mục nhưng nhất định phải nằm trong 3 ROLE ở trên, nếu không để gì thì sẽ set ROLE_USER "
+	},
+	"GetCategories": {
+		"Description": "Lấy tất cả category",
+		"Path": "/api/v1/category/categories",
+		"Method": "GET",
+		"Body Example": "none",
+		"Noted" : "nothing"
+	},
+	"CreateCategory": {
+		"Description": "Thêm mới category",
+		"Path": "/api/v1/category/categories",
+		"Method": "POST",
+		"Body Example": {
+			"name" : "abc",
+			"code" : "abc"
+		},
+		"Noted" : "Cần có role ADMIN"
+	},
+	"UpdateCategory": {
+		"Description": "Cập nhật category",
+		"Path": "/api/v1/category/categories?id=exampleID",
+		"Method": "PUT",
+		"Body Example": {
+			"name" : "abc",
+			"code" : "abc"
+		},
+		"Noted" : "Cần có role ADMIN, param có id kiểu string"
+	},
+	"DeleteCategory": {
+		"Description": "Xóa category",
+		"Path": "/api/v1/category/categories?id=exampleID",
+		"Method": "PUT",
+		"Body Example": "none",
+		"Noted" : "Cần có role ADMIN, param có id kiểu string"
 	}
 }
