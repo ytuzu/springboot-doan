@@ -23,40 +23,106 @@
 				"ROLE_USER"
 			]
 		},
-		"Noted" : "roles có thể chọn nhiều mục nhưng nhất định phải nằm trong 3 ROLE ở trên, nếu không để gì thì sẽ set ROLE_USER "
+		"Noted": "roles có thể chọn nhiều mục nhưng nhất định phải nằm trong 3 ROLE ở trên, nếu không để gì thì sẽ set ROLE_USER "
 	},
 	"GetCategories": {
 		"Description": "Lấy tất cả category",
 		"Path": "/api/v1/category/categories",
 		"Method": "GET",
 		"Body Example": "none",
-		"Noted" : "nothing"
+		"Noted": "nothing"
 	},
 	"CreateCategory": {
 		"Description": "Thêm mới category",
 		"Path": "/api/v1/category/categories",
 		"Method": "POST",
 		"Body Example": {
-			"name" : "abc",
-			"code" : "abc"
+			"name": "abc",
+			"code": "abc"
 		},
-		"Noted" : "Cần có role ADMIN"
+		"Noted": "Cần có role ADMIN"
 	},
 	"UpdateCategory": {
 		"Description": "Cập nhật category",
 		"Path": "/api/v1/category/categories?id=exampleID",
 		"Method": "PUT",
 		"Body Example": {
-			"name" : "abc",
-			"code" : "abc"
+			"name": "abc",
+			"code": "abc"
 		},
-		"Noted" : "Cần có role ADMIN, param có id kiểu string"
+		"Noted": "Cần có role ADMIN, param có id kiểu string"
 	},
 	"DeleteCategory": {
 		"Description": "Xóa category",
 		"Path": "/api/v1/category/categories?id=exampleID",
-		"Method": "PUT",
+		"Method": "DELETE",
 		"Body Example": "none",
-		"Noted" : "Cần có role ADMIN, param có id kiểu string"
+		"Noted": "Cần có role ADMIN, param có id kiểu string"
+	},
+	"GetProducts": {
+		"Description": "Lấy tất cả product",
+		"Path": "/api/v1/product/products",
+		"Method": "GET",
+		"Body Example": "none",
+		"Noted": "nothing"
+	},
+	"CreateProduct": {
+		"Description": "Thêm mới product",
+		"Path": "/api/v1/product/products",
+		"Method": "POST",
+		"Body Example": {
+			"imgUrl_hover": "https://ananas.vn/wp-content/uploads/pro_A61102_1-500x500.jpg",
+			"imgUrl": "https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg",
+			"nameProduct": "Urbas Unsettling - High Top",
+			"img_Thumb": [
+				"https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg",
+				"https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg",
+				"https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg",
+				"https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg"
+			],
+			"productStatus": "New Arrival",
+			"prices": 500000,
+			"quantities": 12331,
+			"description": "Sở hữu công thức pha màu khó chịu. Urbas Unsettling tạo nên điểm nhấn mạnh mẽ, gây kích thích thị giác thông qua sự đối lập trong từng gam màu. Điểm chốt hạ cho một outfit đặc biệt thú vị, tách biệt khỏi sự trùng lặp thông thường.",
+			"typeColor": "Insignia/Sulphur",
+			"status": "available",
+			"typeCategory": [
+				"123"
+			]
+		},
+		"Noted": "Cần có role ADMIN, 'typeCategory' và 'img_Thumb' cần phải để mảng nếu không có để mảng rỗng"
+	},
+	"UpdateProduct": {
+		"Description": "Cập nhật category",
+		"Path": "/api/v1/product/products?id=exampleID",
+		"Method": "PUT",
+		"Body Example": {
+			"imgUrl_hover": "https://ananas.vn/wp-content/uploads/pro_A61102_1-500x500.jpg",
+			"imgUrl": "https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg",
+			"nameProduct": "Urbas Unsettling - High Top",
+			"img_Thumb": [
+				"https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg",
+				"https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg",
+				"https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg",
+				"https://ananas.vn/wp-content/uploads/pro_A61102_2-500x500.jpg"
+			],
+			"productStatus": "New Arrival",
+			"prices": 500000,
+			"quantities": 12331,
+			"description": "Sở hữu công thức pha màu khó chịu. Urbas Unsettling tạo nên điểm nhấn mạnh mẽ, gây kích thích thị giác thông qua sự đối lập trong từng gam màu. Điểm chốt hạ cho một outfit đặc biệt thú vị, tách biệt khỏi sự trùng lặp thông thường.",
+			"typeColor": "Insignia/Sulphur",
+			"status": "available",
+			"typeCategory": [
+				"123"
+			]
+		},
+		"Noted": "Cần có role ADMIN, param có id kiểu string, 'typeCategory' và 'img_Thumb' cần phải để mảng nếu không có để mảng rỗng"
+	},
+	"DeleteProduct": {
+		"Description": "Xóa product",
+		"Path": "/api/v1/product/products?id=exampleID",
+		"Method": "DELETE",
+		"Body Example": "none",
+		"Noted": "Cần có role ADMIN, param có id kiểu string"
 	}
 }

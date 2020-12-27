@@ -1,49 +1,41 @@
-package com.shop.api.models;
+package com.shop.api.payloads.responses;
 
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "products")
-public class Product {
-	@Id
+public class ProductResponse {
 	private String id;
-
-	@NotBlank
 	private String imgUrl_hover;
-
-	@NotBlank
 	private String imgUrl;
-
-	@NotBlank
 	private String nameProduct;
-
-	@NotBlank
 	private List<String> img_Thumb;
-
-	@NotBlank
 	private String productStatus;
-
-	@NotBlank
 	private double prices;
-	
-	@NotBlank
-	private int quantity;
-
-	@NotBlank
+	private int quantities;
 	private String description;
-
-	@NotBlank
 	private String typeColor;
-
-	@NotBlank
 	private String status;
+	private List<String> typeCategory;
 
-	@NotBlank
-	private List<Category> typeCategory;
+	public ProductResponse() {
+	}
+
+	public ProductResponse(String id, String imgUrl_hover, String imgUrl,
+			String nameProduct, List<String> img_Thumb, String productStatus,
+			double prices, int quantities, String description, String typeColor,
+			String status, List<String> typeCategory) {
+		this.id = id;
+		this.imgUrl_hover = imgUrl_hover;
+		this.imgUrl = imgUrl;
+		this.nameProduct = nameProduct;
+		this.img_Thumb = img_Thumb;
+		this.productStatus = productStatus;
+		this.prices = prices;
+		this.quantities = quantities;
+		this.description = description;
+		this.typeColor = typeColor;
+		this.status = status;
+		this.typeCategory = typeCategory;
+	}
 
 	public String getId() {
 		return id;
@@ -93,12 +85,20 @@ public class Product {
 		this.productStatus = productStatus;
 	}
 
-	public int getQuantity() {
-		return quantity;
+	public double getPrices() {
+		return prices;
 	}
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setPrices(double prices) {
+		this.prices = prices;
+	}
+
+	public int getQuantities() {
+		return quantities;
+	}
+
+	public void setQuantities(int quantities) {
+		this.quantities = quantities;
 	}
 
 	public String getDescription() {
@@ -125,22 +125,12 @@ public class Product {
 		this.status = status;
 	}
 
-	public List<Category> getTypeCategory() {
+	public List<String> getTypeCategory() {
 		return typeCategory;
 	}
 
-	public void setTypeCategory(List<Category> typeCategory) {
+	public void setTypeCategory(List<String> typeCategory) {
 		this.typeCategory = typeCategory;
 	}
-
-	public double getPrices() {
-		return prices;
-	}
-
-	public void setPrices(double prices) {
-		this.prices = prices;
-	}
-	
-	
 
 }

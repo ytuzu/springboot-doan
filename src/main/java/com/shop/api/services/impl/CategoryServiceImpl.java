@@ -36,10 +36,7 @@ public class CategoryServiceImpl implements CategoryService {
 	public MessageResponse save(CategoryRequest categoryReq) {
 		Category category;
 		if (categoryReq.getId() != null) {
-			category = categoryRepository.findById(categoryReq.getId()).orElse(null);
-			if (category == null) {
-				return new MessageResponse("Id not exist!");
-			}
+			category = categoryRepository.findById(categoryReq.getId()).orElseThrow(() -> new RuntimeException(categoryReq.getId() + " not exist!"));
 		} else {
 			category = new Category();
 		}
@@ -58,10 +55,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public MessageResponse delete(String id) {
-		Category category = categoryRepository.findById(id).orElse(null);
-		if (category == null) {
-			return new MessageResponse("Id not exist!");
-		}
+		Category category = categoryRepository.findById(id).orElseThrow(() -> new RuntimeException(id + " not exist!"));
 		categoryRepository.delete(category);
 		return new MessageResponse("Delete successfully!");
 	}

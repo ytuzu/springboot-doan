@@ -6,11 +6,9 @@ public class CategoryResponse {
 	private String name;
 
 	public CategoryResponse() {
-		super();
 	}
 
 	public CategoryResponse(String id, String code, String name) {
-		super();
 		this.id = id;
 		this.code = code;
 		this.name = name;
