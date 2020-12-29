@@ -19,6 +19,7 @@ import com.shop.api.payloads.responses.CategoryResponse;
 import com.shop.api.payloads.responses.MessageResponse;
 import com.shop.api.services.CategoryService;
 
+@CrossOrigin(origins = "https://api-doan.herokuapp.com")
 @RestController
 @RequestMapping("/api/v1/category")
 public class CategoryController {
