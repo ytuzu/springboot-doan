@@ -2,6 +2,7 @@ package com.shop.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import com.shop.api.payloads.responses.JwtResponse;
 import com.shop.api.payloads.responses.MessageResponse;
 import com.shop.api.services.AuthService;
 
+@CrossOrigin(origins = "https://api-doan.herokuapp.com")
 @RestController
 @RequestMapping("/api/v1/auth")
 public class AuthController {

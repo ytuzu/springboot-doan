@@ -20,27 +20,27 @@ import com.shop.api.payloads.responses.MessageResponse;
 import com.shop.api.payloads.responses.TypeProductResponse;
 import com.shop.api.services.TypeProductService;
 
-@CrossOrigin
+@CrossOrigin(origins = "https://api-doan.herokuapp.com")
 @RestController
 @RequestMapping("/api/v1/typeproduct")
 public class TypeProductController {
 	@Autowired
 	private TypeProductService typeProductService;
 	
-	@GetMapping("/products")
+	@GetMapping("/typeproducts")
 	public ResponseEntity<?> getCategories() {
 		List<TypeProductResponse> message = typeProductService.getTypeProducts();
 		return ResponseEntity.ok(message);
 	}
 	
-	@PostMapping("/products")
+	@PostMapping("/typeproducts")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> createCategory(@RequestBody TypeProductRequest typeProductReq) {
 		MessageResponse message = typeProductService.save(typeProductReq);
 		return ResponseEntity.ok(message);
 	}
 	
-	@PutMapping("/products")
+	@PutMapping("/typeproducts")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> updateCategory(@RequestBody TypeProductRequest typeProductReq, @RequestParam String id) {
 		typeProductReq.setId(id);
@@ -48,7 +48,7 @@ public class TypeProductController {
 		return ResponseEntity.ok(message);
 	}
 	
-	@DeleteMapping("/products")
+	@DeleteMapping("/typeproducts")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> updateCategory(@RequestParam String id) {
 		MessageResponse message = typeProductService.delete(id);

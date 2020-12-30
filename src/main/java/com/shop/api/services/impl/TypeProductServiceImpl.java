@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.shop.api.models.Category;
 import com.shop.api.models.TypeProduct;
-import com.shop.api.payloads.requests.CategoryRequest;
 import com.shop.api.payloads.requests.TypeProductRequest;
 import com.shop.api.payloads.responses.CategoryResponse;
 import com.shop.api.payloads.responses.MessageResponse;
@@ -58,24 +57,19 @@ public class TypeProductServiceImpl implements TypeProductService {
 		} else {
 			typeProduct = new TypeProduct();
 		}
-		/*
-		if (!typeProductRepository.existsByCode(typeProductReq.getCode())) {
-			return new MessageResponse(typeProductReq.getCode() + " not exist!");
+
+		if ((typeProduct.getCode() != null && !typeProduct.getCode().equals(typeProductReq.getCode())) || typeProduct.getCode() == null) {
+			if (categoryRepository.existsByCode(typeProductReq.getCode())) {
+				return new MessageResponse(typeProductReq.getCode() + " not exist!");
+			}
 		}
-		*/
 		typeProduct.setLabel(typeProductReq.getLabel());
 		typeProduct.setCode(typeProductReq.getCode());
 		typeProduct.setIsToggle(typeProductReq.getIsToggle());
 		
 		List<Category> categories = new ArrayList<Category>();
-		for (CategoryRequest categoryRequest : typeProductReq.getLeaf()) {
-			if (!categoryRepository.existsByCode(categoryRequest.getCode())) {
-				return new MessageResponse(categoryRequest.getCode() + " not exist!");
-			}
-			Category category = new Category();
-			category.setCode(categoryRequest.getCode());
-			category.setName(categoryRequest.getName());
-			
+		for (String categoryCode : typeProductReq.getLeaf()) {
+			Category category = categoryRepository.findOneByCode(categoryCode).orElseThrow(() -> new RuntimeException(categoryCode + " not exist!"));
 			categories.add(category);
 		}
 		typeProduct.setLeaf(categories);

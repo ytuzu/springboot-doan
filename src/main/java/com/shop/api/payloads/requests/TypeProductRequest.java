@@ -13,12 +13,12 @@ public class TypeProductRequest {
 	@NotBlank
 	private Boolean isToggle;
 	@NotBlank
-	private List<CategoryRequest> leaf;
+	private List<String> leaf;
 
 	public TypeProductRequest() {
 	}
 
-	public TypeProductRequest(String id, String label, String code, Boolean isToggle, List<CategoryRequest> leaf) {
+	public TypeProductRequest(String id, String label, String code, Boolean isToggle, List<String> leaf) {
 		this.id = id;
 		this.label = label;
 		this.code = code;
@@ -58,11 +58,11 @@ public class TypeProductRequest {
 		this.isToggle = isToggle;
 	}
 
-	public List<CategoryRequest> getLeaf() {
+	public List<String> getLeaf() {
 		return leaf;
 	}
 
-	public void setLeaf(List<CategoryRequest> leaf) {
+	public void setLeaf(List<String> leaf) {
 		this.leaf = leaf;
 	}
 

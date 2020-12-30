@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,25 +20,26 @@ import com.shop.api.payloads.responses.MessageResponse;
 import com.shop.api.payloads.responses.ProductResponse;
 import com.shop.api.services.ProductService;
 
+@CrossOrigin(origins = "https://api-doan.herokuapp.com")
 @RestController
 @RequestMapping("/api/v1/product")
 public class ProductController {
 	@Autowired
 	private ProductService productService;
-	
+
 	@GetMapping("/products")
 	public ResponseEntity<?> getCategories() {
 		List<ProductResponse> message = productService.getProducts();
 		return ResponseEntity.ok(message);
 	}
-	
+
 	@PostMapping("/products")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> createCategory(@RequestBody ProductRequest productReq) {
 		MessageResponse message = productService.save(productReq);
 		return ResponseEntity.ok(message);
 	}
-	
+
 	@PutMapping("/products")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> updateCategory(@RequestBody ProductRequest productReq, @RequestParam String id) {
@@ -45,7 +47,7 @@ public class ProductController {
 		MessageResponse message = productService.save(productReq);
 		return ResponseEntity.ok(message);
 	}
-	
+
 	@DeleteMapping("/products")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> updateCategory(@RequestParam String id) {
