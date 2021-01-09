@@ -13,5 +13,5 @@ public interface ProductService {
 	List<ProductResponse> getProducts();
 	MessageResponse save(ProductRequest productReq);
 	MessageResponse delete(String id);
-
+	ProductResponse getProductById(String id);
 }

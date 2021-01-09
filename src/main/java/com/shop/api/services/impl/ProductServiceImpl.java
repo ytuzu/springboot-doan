@@ -22,6 +22,34 @@ public class ProductServiceImpl implements ProductService {
 
 	@Autowired
 	private CategoryRepository categoryRepository;
+
+	@Override
+	public ProductResponse getProductById(String id) {
+		Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException(id + " not exist!"));
+		ProductResponse result = new ProductResponse();
+		result.setId(product.getId());
+		result.setDescription(product.getDescription());
+		result.setImg_Thumb(product.getImg_Thumb());
+		result.setImgUrl(product.getImgUrl());
+		result.setImgUrl_hover(product.getImgUrl_hover());
+		result.setNameProduct(product.getNameProduct());
+		result.setPrices(product.getPrices());
+		result.setProductStatus(product.getStatus());
+		result.setQuantities(product.getQuantity());
+		result.setStatus(product.getStatus());
+
+		// Set typeCategories
+		List<String> typeCategories = new ArrayList<String>();
+		for (Category category : product.getTypeCategory()) {
+			typeCategories.add(category.getCode());
+		}
+		result.setTypeCategory(typeCategories);
+
+		result.setTypeColor(product.getTypeColor());
+
+		return result;
+	}
+
 	@Override
 	public List<ProductResponse> getProducts() {
 		List<ProductResponse> result = new ArrayList<ProductResponse>();
@@ -37,16 +65,16 @@ public class ProductServiceImpl implements ProductService {
 			tmp.setProductStatus(product.getStatus());
 			tmp.setQuantities(product.getQuantity());
 			tmp.setStatus(product.getStatus());
-			
+
 			// Set typeCategories for tmp
 			List<String> typeCategories = new ArrayList<String>();
 			for (Category category : product.getTypeCategory()) {
 				typeCategories.add(category.getCode());
 			}
 			tmp.setTypeCategory(typeCategories);
-			
+
 			tmp.setTypeColor(product.getTypeColor());
-			
+
 			result.add(tmp);
 		}
 		return result;
@@ -56,11 +84,12 @@ public class ProductServiceImpl implements ProductService {
 	public MessageResponse save(ProductRequest productReq) {
 		Product product;
 		if (productReq.getId() != null) {
-			product = productRepository.findById(productReq.getId()).orElseThrow(() -> new RuntimeException(productReq.getId() + " not exist!"));
+			product = productRepository.findById(productReq.getId())
+					.orElseThrow(() -> new RuntimeException(productReq.getId() + " not exist!"));
 		} else {
 			product = new Product();
 		}
-		
+
 		product.setDescription(productReq.getDescription());
 		product.setImg_Thumb(productReq.getImg_Thumb());
 		product.setImgUrl(productReq.getImgUrl());
@@ -70,16 +99,17 @@ public class ProductServiceImpl implements ProductService {
 		product.setProductStatus(productReq.getStatus());
 		product.setQuantity(productReq.getQuantities());
 		product.setStatus(productReq.getStatus());
-		
+
 		// Set typeCategories
 		List<Category> typeCategories = new ArrayList<Category>();
 		for (String categoryCode : productReq.getTypeCategory()) {
-			typeCategories.add(categoryRepository.findOneByCode(categoryCode).orElseThrow(() -> new RuntimeException(categoryCode + " not exist! ")));
+			typeCategories.add(categoryRepository.findOneByCode(categoryCode)
+					.orElseThrow(() -> new RuntimeException(categoryCode + " not exist!")));
 		}
 		product.setTypeCategory(typeCategories);
-		
+
 		product.setTypeColor(productReq.getTypeColor());
-		
+
 		productRepository.save(product);
 		return new MessageResponse("Successfully!");
 	}
@@ -90,4 +120,5 @@ public class ProductServiceImpl implements ProductService {
 		productRepository.delete(product);
 		return new MessageResponse("Delete successfully!");
 	}
+
 }

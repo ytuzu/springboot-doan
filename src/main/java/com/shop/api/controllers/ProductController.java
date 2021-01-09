@@ -28,21 +28,27 @@ public class ProductController {
 	private ProductService productService;
 
 	@GetMapping("/products")
-	public ResponseEntity<?> getCategories() {
+	public ResponseEntity<?> getProducts() {
 		List<ProductResponse> message = productService.getProducts();
 		return ResponseEntity.ok(message);
 	}
 
+	@GetMapping("/product")
+	public ResponseEntity<?> getProductById(@RequestParam String id) {
+		ProductResponse message = productService.getProductById(id);
+		return ResponseEntity.ok(message);
+	}
+	
 	@PostMapping("/products")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> createCategory(@RequestBody ProductRequest productReq) {
+	public ResponseEntity<?> createProduct(@RequestBody ProductRequest productReq) {
 		MessageResponse message = productService.save(productReq);
 		return ResponseEntity.ok(message);
 	}
 
 	@PutMapping("/products")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> updateCategory(@RequestBody ProductRequest productReq, @RequestParam String id) {
+	public ResponseEntity<?> updateProduct(@RequestBody ProductRequest productReq, @RequestParam String id) {
 		productReq.setId(id);
 		MessageResponse message = productService.save(productReq);
 		return ResponseEntity.ok(message);
@@ -50,7 +56,7 @@ public class ProductController {
 
 	@DeleteMapping("/products")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> updateCategory(@RequestParam String id) {
+	public ResponseEntity<?> updateProduct(@RequestParam String id) {
 		MessageResponse message = productService.delete(id);
 		return ResponseEntity.ok(message);
 	}

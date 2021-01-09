@@ -66,6 +66,13 @@
 		"Body Example": "none",
 		"Noted": "nothing"
 	},
+	"GetProductById": {
+		"Description": "Lấy product theo id",
+		"Path": "/api/v1/product/product?id=exampleID",
+		"Method": "GET",
+		"Body Example": "none",
+		"Noted": "nothing"
+	},
 	"CreateProduct": {
 		"Description": "Thêm mới product",
 		"Path": "/api/v1/product/products",
