@@ -65,7 +65,11 @@ public class AuthServiceImpl implements AuthService{
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return new MessageResponse("Username is already taken!");
 		}
-
+		
+		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+			return new MessageResponse("Email is already taken!");
+		}
+		
 		// Create new user's account
 		User user = new User(
 				signUpRequest.getUsername().toLowerCase(), 
@@ -95,8 +99,12 @@ public class AuthServiceImpl implements AuthService{
 					Role userRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(userRole);
-				} 
+				} else {
+					return new MessageResponse("Error: Role is not found.");
+				}
 			}
+			
+			
 		}
 
 		user.setRoles(roles);
