@@ -8,8 +8,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "users")
@@ -19,20 +17,17 @@ public class User {
 
 	@NotBlank
 	@Size(max = 20)
-	@Indexed(unique = true)
 	private String username;
 
 	@NotBlank
 	@Size(max = 50)
 	@Email
-	@Indexed(unique = true)
 	private String email;
 
 	@NotBlank
 	@Size(max = 120)
 	private String password;
 
-	@DBRef
 	private Set<Role> roles = new HashSet<>();
 
 	public User() {

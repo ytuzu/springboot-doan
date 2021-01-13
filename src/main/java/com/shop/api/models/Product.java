@@ -2,8 +2,6 @@ package com.shop.api.models;
 
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,38 +9,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Product {
 	@Id
 	private String id;
-
-	@NotBlank
 	private String imgUrl_hover;
-
-	@NotBlank
 	private String imgUrl;
-
-	@NotBlank
 	private String nameProduct;
-
-	@NotBlank
 	private List<String> img_Thumb;
-
-	@NotBlank
 	private String productStatus;
-
-	@NotBlank
 	private double prices;
-	
-	@NotBlank
 	private int quantity;
-
-	@NotBlank
 	private String description;
-
-	@NotBlank
 	private String typeColor;
-
-	@NotBlank
 	private String status;
-
-	@NotBlank
 	private List<Category> typeCategory;
 
 	public String getId() {

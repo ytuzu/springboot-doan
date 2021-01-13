@@ -13,9 +13,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.shop.api.models.ERole;
 import com.shop.api.models.Role;
 import com.shop.api.models.User;
+import com.shop.api.models.enums.ERole;
 import com.shop.api.payloads.requests.LoginRequest;
 import com.shop.api.payloads.requests.SignupRequest;
 import com.shop.api.payloads.responses.JwtResponse;

@@ -2,8 +2,6 @@ package com.shop.api.models;
 
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,18 +10,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class TypeProduct {
 	@Id
 	private String id;
-
-	@NotBlank
 	private String label;
-
-	@NotBlank
 	@Indexed(unique = true)
 	private String code;
-
-	@NotBlank
 	private Boolean isToggle;
-
-	@NotBlank
 	private List<Category> leaf;
 
 	public String getId() {

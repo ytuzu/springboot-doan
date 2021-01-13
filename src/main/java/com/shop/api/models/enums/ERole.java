@@ -1,4 +1,4 @@
-package com.shop.api.models;
+package com.shop.api.models.enums;
 
 public enum ERole {
 	ROLE_USER, 
