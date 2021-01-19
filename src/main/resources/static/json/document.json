@@ -165,5 +165,70 @@
 		"Method": "DELETE",
 		"Body Example": "none",
 		"Noted": "Cần có role ADMIN, param có id kiểu string"
+	},
+	"GetBills": {
+		"Description": "Lấy tất cả Bill",
+		"Path": "/api/v1/bills",
+		"Method": "GET",
+		"Body Example": "none",
+		"Noted": "nothing"
+	},
+	"CreateBill": {
+		"Description": "Thêm mới Bill",
+		"Path": "/api/v1/bills",
+		"Method": "POST",
+		"Body Example": {
+			"username" : "admin",
+			"address" : "19 Hàn Thuyên",
+			"city" : "Đà Nẵng",
+			"phoneNumber" : "086907345",
+			"total" : 1000000,
+			"billDetails" : [
+				{
+					"productID" : "eqwewe2134ewqe",
+					"prices" : 1000000,
+					"quantity" : 1,
+					"totalProduct" : 1000000
+				}
+			],
+			"payment" : "thanh-toan-online"
+		},
+		"Noted": "nothing"
+	},
+	"UpdateBill": {
+		"Description": "Cập nhật Bill",
+		"Path": "/api/v1/bills/{id}",
+		"Method": "PUT",
+		"Body Example": {
+			"username" : "admin",
+			"address" : "19 Hàn Thuyên",
+			"city" : "Đà Nẵng",
+			"phoneNumber" : "086907345",
+			"total" : 1000000,
+			"billDetails" : [
+				{
+					"productID" : "eqwewe2134ewqe",
+					"prices" : 1000000,
+					"quantity" : 1,
+					"totalProduct" : 1000000
+				}
+			],
+			"payment" : "thanh-toan-online"
+		},
+		"Noted": "Example Path: /api/v1/bills/213213yuuiy31231"
+	},
+	"UpdateStatusBill": {
+		"Description": "Cập nhật trạng thái Bill",
+		"Path": "/api/v1/bills/{id}/{status}",
+		"Method": "PUT",
+		"Body Example": "nothing",
+		"Noted": "Example Path: /api/v1/bills/213213yuuiy31231/PAIR   --  status có 2 trạng thái PAIR và UNPAIR -- Role Admin"
+	},
+	"DeleteBill": {
+		"Description": "Xóa Bill",
+		"Path": "/api/v1/bills/{id}",
+		"Method": "DELETE",
+		"Body Example": "nothing",
+		"Noted": "Example Path: /api/v1/bills/213213yuuiy31231"
 	}
 }
